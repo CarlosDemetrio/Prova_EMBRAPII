@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block titulo%}Login{% endblock %}
+{% block navbar %}{% endblock %}
+{% block main %}
+
+    {% if form.errors %}
+        <p>Seu usuário ou senha estão incorretos, tente novamente</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Você não tem acesso a essa conta</p>
+        {% else %}
+            <p>Faça login para ver esta página</p>
+        {% endif %}
+    {% endif %}
+    <div class="container">
+        <div class="jumbotron" id="forms-login">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <h2 class="h3 mb-3 font-weight-normal">Login</h2>
+                <table class="mx-auto">
+                    <tr >
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                </table>
+                <br>
+                <input type="submit" value="login" class="btn btn-dark btn-lg">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+                {# Assumes you setup the password_reset view in your URLconf #}
+            <br>
+            <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
+        </div>
+    </div>
+
+
+{% endblock %}

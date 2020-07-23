@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block titulo %} Update Teste{% endblock %}
+{% block main %}
+<h2>Atualizando Teste:{{ Teste }}</h2>
+    <form action="{% url 'update_paciente' Teste.id %}" method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Editar</button>
+    </form>
+{% endblock %}
