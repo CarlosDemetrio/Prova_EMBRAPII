@@ -49,7 +49,7 @@ def paciente_update(request, id):
         form.save()
         return redirect('lista_paciente')
     else:
-        return render(request, 'AppCovid/update/update_paciente.html', data)
+        return render(request, 'AppCovid/update/update_paciente.html', data, id)
 
 
 @login_required
@@ -63,7 +63,7 @@ def testes_update(request, id):
         form.save()
         return redirect('lista_testes')
     else:
-        return render(request, '', data)
+        return render(request, '', data, id)
     
     
 @login_required

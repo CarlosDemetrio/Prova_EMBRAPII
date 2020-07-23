@@ -3,7 +3,15 @@ from django.db.models import CASCADE
 
 
 class Teste(models.Model):
-    tipo = models.CharField(max_length=25)
+    tipos_teste = (
+        ('nenhum', 'nenhum'),
+        ('RT - PCR', 'RT - PCR'),
+        ('Sorologia', 'Sorologia'),
+        ('Teste Rápido - Antígenos', 'Teste Rápido - Antígenos'),
+        ('Teste Rápido - Anticorpos', 'Teste Rápido - Anticorpos'),
+    )
+    
+    tipo = models.CharField(max_length=25, choices=tipos_teste, default=tipos_teste[0])
     resultado = models.BooleanField(default=False)
     
     def __str__(self):
